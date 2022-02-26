@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Flix
 //
-//  Created by 小元宵 on 2/22/22.
+//  Created by Ziyue Wang on 2/22/22.
 //
 
 import UIKit
