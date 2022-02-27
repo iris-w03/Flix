@@ -38,12 +38,8 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
                     print(error.localizedDescription)
              } else if let data = data {
                     let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-
-                    // TODO: Get the array of movies
-                    // TODO: Store the movies in a property to use elsewhere
-                    // TODO: Reload your table view data
-                 self.movies = dataDictionary["results"] as! [[String:Any]]
-                 self.collectionView.reloadData()
+                    self.movies = dataDictionary["results"] as! [[String:Any]] //Get the array of movies, Store the movies in a property to use elsewhere
+                    self.collectionView.reloadData() //Reload your table view data
              }
         }
         task.resume()
@@ -68,14 +64,21 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
     
     
 
-    /*
-    // MARK: - Navigation
+     override func didReceiveMemoryWarning() {
+         super.didReceiveMemoryWarning()
+         // Dispose of any resources that can be recreated.
+     }
+     
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+         let cell = sender as! UICollectionViewCell
+         let indexPath = collectionView.indexPath(for: cell)!
+         let movie = movies[indexPath.row]
+         
+         let detailsViewController = segue.destination as! MovieDetailsViewController
+         detailsViewController.movie = movie
+         collectionView.deselectItem(at: indexPath, animated: true)
+        // collectionView.deselectRow(at: indexPath, animated: true)
+     }
 
 }

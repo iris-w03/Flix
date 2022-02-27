@@ -39,15 +39,27 @@ class MovieDetailsViewController: UIViewController {
         
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    @IBAction func onTap(_ sender: Any) {
+        performSegue(withIdentifier: "videoSegue", sender: nil)
+    }
+    
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
+        // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        let trailerViewController = segue.destination as! trailerViewController
+        let tempKey = movie["id"] ?? ""
+        trailerViewController.key = tempKey
     }
-    */
 
 }
